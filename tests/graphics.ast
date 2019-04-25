@@ -1,0 +1,10 @@
+
+module Graphics {
+  Root     = (IDENTIFIER name, Figure* figs)
+  Figure   = Rect | Circle | Line | Point attributes (Position position, INT thickness, Color color)
+  Position = (INT x, INT y)
+  Rect     = (INT width,INT heigth)
+  Circle   = (INT radius)
+  Line     = (INT start, INT end)
+  Color    = (INT green, INT red, INT blue)
+}

@@ -1,0 +1,46 @@
+-- Astreo ASDL's builtin types are:
+
+-- IDENTIFIER,
+-- BOOL, BYTE, INT, FLOAT, STRING, CHAR
+-- INT_LIT, FLOAT_LIT, CHAR_LIT, STRING_LIT
+-- TRUE, FALSE
+
+module VHDL {
+
+  Design_file = (context* context, design_unit* units)
+
+  Context     = Library(IDENTIFIER name)
+              | LibraryUse(IDENTIFIER library,IDENTIFIER package, IDENTIFIER usable)
+
+  Design_unit =  Entity(generic* generics, port* ports)
+              |  Architecture(declaration* declarations,stmt* body)
+
+  Generic     =  (IDENTIFIER name,IDENTIFIER type,expr? init)
+
+  Port        =  (IDENTIFIER name,direction direction, type type)
+
+  Type        = simple_type
+              | IndexedType(type type,range range)
+
+  Simple_type = primitive_type
+              | IDENTIFIER
+
+  Range       = (INT start, INT end)
+
+  Primitive_type = INT | FLOAT | BOOL
+
+  Direction   = In | Out | Inout
+
+  Declaration = Signal(IDENTIFIER name, IDENTIFIER type, expr? init)
+              | Constant(IDENTIFIER name,expr value)
+
+  Expr       = Literal(lit value)
+             | IDENTIFIER
+             | Unary(expr expr, unaryop op)
+             | Binary(expr lhs,expr rhs)
+
+  UnaryOp    = Minus | Plus | Not
+
+  Lit        = INT_LIT | FLOAT_LIT | TRUE | FALSE | BitVector(string_lit value)
+
+}
