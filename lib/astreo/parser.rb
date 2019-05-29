@@ -123,16 +123,3 @@ module Astreo
 
   end#class Parser
 end #module
-
-if $PROGRAM_NAME == __FILE__
-  require_relative 'dot_printer_rec'
-  str=IO.read(ARGV[0])
-  show_lines(str)
-  t1 = Time.now
-  parser=C::Parser.new
-  ast=parser.parse(str)
-  dot=C::DotPrinter.new.print(ast)
-  dot.save_as "test.dot"
-  t2 = Time.now
-  puts "parsed in     : #{t2-t1} s"
-end
